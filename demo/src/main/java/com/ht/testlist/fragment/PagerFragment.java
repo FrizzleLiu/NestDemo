@@ -79,6 +79,7 @@ public class PagerFragment extends Fragment {
                             case 'b':
                                 //内层RecyclerView下拉到最顶部时候不再处理事件
                                 if(!recyclerView.canScrollVertically(-1) && ((MainActivity)getActivity()).isStick){
+                                    recyclerView.getParent().requestDisallowInterceptTouchEvent(false);
                                     ((MainActivity)getActivity()).adjustScroll(true);
                                 }
                         }

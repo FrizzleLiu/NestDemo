@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.ht.testlist.activity.MainActivity;
@@ -68,16 +69,13 @@ public class OutRecyclerView extends RecyclerView implements MainActivity.StickS
                         setNeedIntercept(false);
                         break;
                 }
-                break;
-        }
-        switch (e.getAction()) {
-            case MotionEvent.ACTION_MOVE:
                 return isNeedIntercept;
         }
         return super.onInterceptTouchEvent(e);
     }
-    public void setNeedIntercept(boolean needScroll) {
-        isNeedIntercept = needScroll;
+
+    public void setNeedIntercept(boolean needIntercept) {
+        isNeedIntercept = needIntercept;
     }
 
     private int getOrientation(float dx, float dy) {

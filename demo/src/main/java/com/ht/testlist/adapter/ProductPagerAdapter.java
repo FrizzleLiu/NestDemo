@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -135,6 +136,8 @@ public class ProductPagerAdapter extends DelegateAdapter.Adapter {
         if(location[1]>0){
             if(paddingTop>=0){
                 pageViewHolder.mViewPager.setPadding(0,paddingTop,0,0);
+            }else{
+                pageViewHolder.mViewPager.setPadding(0,0,0,0);
             }
         }
 
