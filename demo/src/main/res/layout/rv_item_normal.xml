@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/colorPrimary"
+        android:text="0"
+        android:id="@+id/tv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+</android.support.constraint.ConstraintLayout>
