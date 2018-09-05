@@ -1,4 +1,4 @@
-package com.ht.testlist;
+package com.ht.testlist.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ht.testlist.adapter.PagerListAdapter;
+import com.ht.testlist.R;
+import com.ht.testlist.activity.MainActivity;
 
 /**
  * Created by song on 2018/8/22 0022
@@ -34,7 +38,7 @@ public class PagerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = View.inflate(getContext(),R.layout.fragment_pager,null);
+        View view = View.inflate(getContext(), R.layout.fragment_pager,null);
         mRv = (RecyclerView) view.findViewById(R.id.rv);
         if(getArguments()!=null){
             title = getArguments().getString("title");

@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rl_root"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
-    <com.ht.testlist.OutRecyclerView
+    <com.ht.testlist.weight.OutRecyclerView
         android:fillViewport="true"
         android:id="@+id/rv"
         android:layout_width="match_parent"

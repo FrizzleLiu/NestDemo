@@ -1,4 +1,4 @@
-package com.ht.testlist;
+package com.ht.testlist.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,13 +6,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
+import com.ht.testlist.holder.PageViewHolder;
+import com.ht.testlist.R;
 
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class ProductPagerAdapter extends DelegateAdapter.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new PageViewHolder(View.inflate(parent.getContext(),R.layout.rv_item_pager,null));
+                return new PageViewHolder(View.inflate(parent.getContext(), R.layout.rv_item_pager,null));
 }
 
     @Override

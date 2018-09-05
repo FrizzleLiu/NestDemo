@@ -1,4 +1,4 @@
-package com.ht.testlist;
+package com.ht.testlist.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,11 @@ import android.widget.RelativeLayout;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
+import com.ht.testlist.adapter.MainAdapter;
+import com.ht.testlist.weight.OutRecyclerView;
+import com.ht.testlist.adapter.ProductPagerAdapter;
+import com.ht.testlist.adapter.ProductTabAdapter;
+import com.ht.testlist.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +24,7 @@ import java.util.List;
  * My email : logisong@163.com
  * The role of this :
  */
-public class MainActivity extends AppCompatActivity implements ProductPagerAdapter.PageChageListener, ProductTabAdapter.TabChangeListener{
+public class MainActivity extends AppCompatActivity implements ProductPagerAdapter.PageChageListener, ProductTabAdapter.TabChangeListener {
 
     private List<String> data = new ArrayList<>();
     public boolean innerCanScroll = true;

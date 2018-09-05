@@ -1,21 +1,17 @@
-package com.ht.testlist;
+package com.ht.testlist.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
-import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
-
-import org.w3c.dom.Text;
+import com.ht.testlist.holder.ProductTabHolder;
+import com.ht.testlist.R;
 
 import java.util.List;
 
@@ -47,7 +43,7 @@ public class ProductTabAdapter extends DelegateAdapter.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new ProductTabHolder(View.inflate(parent.getContext(),R.layout.layout_tab_view,null));
+                return new ProductTabHolder(View.inflate(parent.getContext(), R.layout.layout_tab_view,null));
 }
 
     @Override

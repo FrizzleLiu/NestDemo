@@ -1,10 +1,12 @@
-package com.ht.testlist;
+package com.ht.testlist.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.ht.testlist.R;
 
 /**
  * Created by song on 2018/8/22 0022
@@ -21,7 +23,7 @@ private String title;
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(parent.getContext(),R.layout.rv_item_normal,null);
+        View view = View.inflate(parent.getContext(), R.layout.rv_item_normal,null);
         return new ViewHolder(view);
     }
 

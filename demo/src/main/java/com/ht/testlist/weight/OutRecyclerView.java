@@ -1,10 +1,12 @@
-package com.ht.testlist;
+package com.ht.testlist.weight;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import com.ht.testlist.activity.MainActivity;
 
 /**
  * Created by Administrator on 2018/9/3.

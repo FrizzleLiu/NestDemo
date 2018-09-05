@@ -1,4 +1,4 @@
-package com.ht.testlist;
+package com.ht.testlist.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.ht.testlist.R;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class MainAdapter extends DelegateAdapter.Adapter{
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new MainViewHolder(View.inflate(parent.getContext(),R.layout.rv_item_normal,null));
+                return new MainViewHolder(View.inflate(parent.getContext(), R.layout.rv_item_normal,null));
     }
 
     @Override

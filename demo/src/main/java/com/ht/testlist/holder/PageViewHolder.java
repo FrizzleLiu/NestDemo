@@ -1,10 +1,12 @@
-package com.ht.testlist;
+package com.ht.testlist.holder;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import com.ht.testlist.R;
 
 /**
  * Created by Administrator on 2018/8/29.

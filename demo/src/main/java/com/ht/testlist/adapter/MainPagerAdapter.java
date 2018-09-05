@@ -1,9 +1,11 @@
-package com.ht.testlist;
+package com.ht.testlist.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.ht.testlist.fragment.PagerFragment;
 
 import java.util.List;
 
