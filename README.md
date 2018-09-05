@@ -99,7 +99,7 @@
         }
     }
 ```
-isNeedIntercept为是否拦截滑动事件,自己处理.并提供了一个setNeedIntercept方法供外部调用.代码可以看出,横向的滑动直接放行,让ViewPager处理,上上滑动时候如果tab吸顶了且不已经滑动到底部,交给内部的RecyclerView处理,否则自己处理.
+isNeedIntercept为是否拦截滑动事件,自己处理.并提供了一个setNeedIntercept方法供外部调用.代码可以看出,横向的滑动直接放行,让ViewPager处理,向上滑动时候如果tab吸顶了且已经滑动到底部,交给内部的RecyclerView处理,否则自己处理.
 
 ##### 以下2-5条为MainActivity里的代码
 2. 外部的RecyclerView设置了一个滚动监听,实时刷新Tab的是否吸顶,告诉需要用到的地方
