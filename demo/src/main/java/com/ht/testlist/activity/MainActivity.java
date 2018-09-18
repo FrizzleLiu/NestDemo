@@ -9,12 +9,10 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
-import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.ht.testlist.adapter.MainAdapter;
-import com.ht.testlist.weight.OutRecyclerView;
-import com.ht.testlist.adapter.ProductPagerAdapter;
-import com.ht.testlist.adapter.ProductTabAdapter;
+import com.ht.testlist.fragment.PagerFragment;
 import com.ht.testlist.R;
+import com.ht.testlist.weight.OutRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,22 +22,24 @@ import java.util.List;
  * My email : logisong@163.com
  * The role of this :
  */
-public class MainActivity extends AppCompatActivity implements ProductPagerAdapter.PageChageListener, ProductTabAdapter.TabChangeListener {
+public class MainActivity extends AppCompatActivity implements MainAdapter.PagerChangeListener{
 
     private List<String> data = new ArrayList<>();
+    private List<PagerFragment> fragments = new ArrayList<>();
     public boolean innerCanScroll = true;
     private VirtualLayoutManager virtualLayoutManager;
-    private ProductPagerAdapter productPagerAdapter;
-    private ProductTabAdapter productTabAdapter;
     private MainAdapter mainAdapter;
-    private StickyLayoutHelper stickyLayoutHelper;
+    private PagerFragment currentFragment;
+
     private float downX ;    //按下时 的X坐标
     private float downY ;    //按下时 的Y坐标
     public OutRecyclerView rv;
     private DelegateAdapter delegateAdapter;
     public boolean isStick=false;
     private RelativeLayout rootView;
-    private StickStatusListener stickStatusListener;
+    private int yCriticalPoint;
+    public static int rvYPosition=-10000;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,19 +49,13 @@ public class MainActivity extends AppCompatActivity implements ProductPagerAdapt
         data.add("女装");
         data.add("童装");
         data.add("鞋子");
-        rv = findViewById(R.id.rv);
+        rv = (OutRecyclerView)findViewById(R.id.rv);
         rootView = findViewById(R.id.rl_root);
         virtualLayoutManager = new VirtualLayoutManager(this);
         rv.setLayoutManager(virtualLayoutManager);
         delegateAdapter = new DelegateAdapter(virtualLayoutManager);
         rv.setAdapter(delegateAdapter);
-        setStickStatusListener(rv);
-        mainAdapter = new MainAdapter(this);
-        delegateAdapter.addAdapter(mainAdapter);
-        stickyLayoutHelper = new StickyLayoutHelper();
-        productTabAdapter = new ProductTabAdapter(this, data, stickyLayoutHelper);
-        productTabAdapter.setTabChangeListener(this);
-        delegateAdapter.addAdapter(productTabAdapter);
+        rv.setNestedScrollingEnabled(true);
         //状态栏高度
         int statusBarHeight = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen",
@@ -71,69 +65,32 @@ public class MainActivity extends AppCompatActivity implements ProductPagerAdapt
         }
         //屏幕高度
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
-        productPagerAdapter = new ProductPagerAdapter(this,getSupportFragmentManager(),data, dm.heightPixels-statusBarHeight);
-        productPagerAdapter.setPageChageListener(this);
-        delegateAdapter.addAdapter(productPagerAdapter);
+        for (int i = 0; i <data.size() ; i++) {
+            fragments.add(PagerFragment.newInstance(data.get(i))) ;
+        }
+        final float scale = dm.density;
+        int i = (int) (54 * scale + 0.5f);
+        yCriticalPoint=statusBarHeight+i;
+        currentFragment=fragments.get(0);
+        mainAdapter = new MainAdapter(this,getSupportFragmentManager(),data, fragments,dm.heightPixels-statusBarHeight-i);
+        delegateAdapter.addAdapter(mainAdapter);
+        mainAdapter.setPagerChangeListener(this);
         rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                //内外RecyclerView滑动时候刷新isStick的状态
-                refreshStick();
+                super.onScrolled(recyclerView, dx, dy);
             }
         });
-
-
     }
 
-    //ViewPager滑动切换回调
+    public void adjustIntercept(boolean b){
+        rv.setNeedIntercept(b);
+    }
+
     @Override
-    public void pageChange(int position) {
-        //切换ViewPage,
-        if(isStick){
-            rv.setNeedIntercept(false);
-        }else{
-            rv.setNeedIntercept(true);
-        }
-        if(productTabAdapter!=null){
-            productTabAdapter.setSelectPosition(position);
-        }
-    }
-    //Tab点击切换回调
-    @Override
-    public void tabChage(int position) {
-        if(productPagerAdapter!=null){
-            productPagerAdapter.setSelectedPosition(position);
-        }
-    }
-
-    //RecyclerView滑动时,实时刷新isStick的状态
-    public void refreshStick(){
-        //由于stickyLayoutHelper.isStickyNow()在布局刚展示时默认为true所以这里还取了其View的Y坐标一起判断
-        if(stickyLayoutHelper !=null && stickyLayoutHelper.isStickyNow() && stickyLayoutHelper.getFixedView()!=null && stickyLayoutHelper.getFixedView().getY()== rv.getY()){
-            isStick=true;
-        }else{
-            isStick=false;
-        }
-        if(productPagerAdapter!=null){
-            productPagerAdapter.refreshVpLayout(isStick);
-        }
-        if (stickStatusListener != null) {
-            stickStatusListener.updateStick(isStick);
-        }
-    }
-
-    public interface  StickStatusListener{
-        void updateStick(boolean isStick);
+    public void pagerChange(int position) {
+        currentFragment=fragments.get(position);
     }
 
 
-    //这里是告诉外层的RecyclerView当前的吸顶状态
-    public void setStickStatusListener(StickStatusListener stickStatusListener) {
-        this.stickStatusListener=stickStatusListener;
-    }
-
-    //
-    public void adjustScroll(boolean needIntercept){
-        rv.setNeedIntercept(needIntercept);
-    }
 }

@@ -17,15 +17,16 @@ import java.util.List;
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
     private List<String> data;
-
-    public MainPagerAdapter(FragmentManager fm, List<String> data) {
+    private List<PagerFragment> fragments;
+    public MainPagerAdapter(FragmentManager fm, List<String> data, List<PagerFragment> fragments) {
         super(fm);
         this.data = data;
+        this.fragments=fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return  PagerFragment.newInstance(data.get(position));
+        return fragments.get(position);
     }
 
     @Override

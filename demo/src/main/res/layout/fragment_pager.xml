@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
+    <com.ht.testlist.weight.InnerRecyclerView1
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -17,10 +17,12 @@ public class PageViewHolder extends RecyclerView.ViewHolder {
 
     public ViewPager mViewPager;
     public RelativeLayout rlVpContainer;
+    public TabLayout tabLayout;
 
     public PageViewHolder(View view) {
         super(view);
         mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
         rlVpContainer = view.findViewById(R.id.rl_vp_container);
+        tabLayout = view.findViewById(R.id.tablayout);
     }
 }

@@ -14,8 +14,8 @@ import com.ht.testlist.activity.MainActivity;
  * Description : OutRecyclerView
  */
 
-public class OutRecyclerView extends RecyclerView implements MainActivity.StickStatusListener {
-    private boolean isNeedIntercept = true;
+public class OutRecyclerView extends RecyclerView  {
+    private boolean isNeedIntercept = false;
     private float downX ;    //按下时 的X坐标
     private float downY ;    //按下时 的Y坐标
 
@@ -51,15 +51,6 @@ public class OutRecyclerView extends RecyclerView implements MainActivity.StickS
                 //通过距离差判断方向
                 int orientation = getOrientation(dx, dy);
                 switch (orientation) {
-                    //外层RecyclerView滑动到底部将滑动不拦截在拦截滑动事件,注意:滑动到底部的时候,可以拿到触摸时间但是接着上滑已经不会回调onScrolled
-                    //来回切换的过程中可能出现没吸顶,但是外部的RecyclerView已经滑动到底部的情况
-                    case 't':
-                        if(!canScrollVertically(1) && isStick){
-                            setNeedIntercept(false);
-                        }else{
-                            setNeedIntercept(true);
-                        }
-                        break;
                         //左右滑动交给ViewPager处理
                     case 'r':
                         setNeedIntercept(false);
@@ -88,10 +79,6 @@ public class OutRecyclerView extends RecyclerView implements MainActivity.StickS
         }
     }
 
-    @Override
-    public void updateStick(boolean isStick) {
-        this.isStick=isStick;
-    }
 
 
 
